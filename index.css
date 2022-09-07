@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple|outline|brick-sign");
+:root{
+    --backcolor:rgb(246, 246, 196)
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:  "Geneva", Verdana, sans-serif;
+}
+
+body{
+    background-color: aquamarine;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+nav{
+   background-color: green;
+   width: 100%;
+   height: 50px;
+   text-align: center;
+   line-height: 50px;
+    font-size: 2em;
+    font-family: "Rancho";
+    font-weight: 700;
+    top:0;
+    position: fixed;
+}
+
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.flag{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    margin-bottom: 5px;
+}
+#flagleft{
+    font-size: 1.6em;
+}
+
+.board{
+    display: grid;
+    grid-template-columns: repeat(var(--size),50px) ;
+    grid-template-rows: repeat(var(--size),50px) ;
+    background-color: aliceblue;
+    gap: 3px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.board > *{
+    width: 100%;
+    height: 100%;
+    color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+    user-select: none;
+    transition: all 0.1s ease;
+    border-radius: 6px;
+}
+
+.hidden{
+    background-color: aqua;
+}
+
+.marked{
+    background-image:url(Flag.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: var(--backcolor);
+}
+
+
+.revealed{
+    background-color: var(--backcolor);
+}
+
+.gameover{
+    display: none;
+    font-family: "Poppins";
+    margin-bottom: 5px;
+    font-size: 2em;
+}
+.gamewin{
+   display: none;
+   margin-bottom: 5px;
+   font-size: 2em;
+}
+
+.mine{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: reveal 0.8s linear infinite alternate;
+}
+
+@keyframes reveal {
+    0%{
+        background-image:none;
+        scale: 0.1;
+    }
+    50%{
+        scale:0.5
+    }
+    100%{
+        sccale: 1;
+        background-image:url(mine.png);
+    }
+    
+}
+.playagain{
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    background-color: green;
+    color: aquamarine;
+    padding: 10px;
+    font-size: large;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
