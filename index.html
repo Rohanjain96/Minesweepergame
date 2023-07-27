@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,20 +8,36 @@
     <title>Minesweeper</title>
     <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
-    <nav class="font-effect-shadow-multiple">MINESWEEPER</nav>
+
     <div class="wrapper">
-        <div class="flag">
-         <img src= "Flag.webp" width="40px" height="40px"  />
-         <span id="flagleft" class=" font-effect-brick-sign"></span>
+        <div class="upper_box">
+            <div class="custom-select">
+                <div class="select-selected">Select Difficulty</div>
+                <div class="select-options">
+                    <div class="select-option" data-value="easy">Easy</div>
+                    <div class="select-option" data-value="medium">Medium</div>
+                    <div class="select-option" data-value="hard">Hard</div>
+                </div>
+            </div>
+            <div class="flag">
+                <img src="Flag.webp" width="40px" height="40px" />
+                <span id="flagleft" class=" font-effect-brick-sign"></span>
+            </div>
+            <div class="timer">
+                <img src="clock.jpg"/>
+                <span></span>
+            </div>
         </div>
         <div class="board">
         </div>
         <script src="script.js" type="module"></script>
-    
+
         <h1 class="gameover font-effect-shadow-multiple">Game Over</h1>
         <h1 class="gamewin font-effect-shadow-multiple">You Win</h1>
         <Button class="playagain font-effect-outline">Play again</Button>
     </div>
 </body>
+
 </html>
