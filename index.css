@@ -1,16 +1,18 @@
 @import url("https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple|outline|brick-sign");
-:root{
-    --backcolor:rgb(246, 246, 196)
+
+:root {
+    --backcolor: rgb(246, 246, 196)
 }
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:  "Geneva", Verdana, sans-serif;
+    font-family: "Geneva", Verdana, sans-serif;
 }
 
-body{
-    background-color: aquamarine;
+body {
+    background-color: #5e60dc;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -18,20 +20,59 @@ body{
     flex-direction: column;
 }
 
-nav{
-   background-color: green;
-   width: 100%;
-   height: 50px;
-   text-align: center;
-   line-height: 50px;
-    font-size: 2em;
-    font-family: "Rancho";
-    font-weight: 700;
-    top:0;
-    position: fixed;
+.upper_box {
+    display: flex;
+    align-items: center;
+    width: 400px;
+    justify-content: space-between;
 }
 
-.wrapper{
+.custom-select {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.select-selected {
+    border-radius: 5px;
+    background-color: white;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+}
+
+.select-options {
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: 40px;
+    border-radius: 5px;
+}
+
+.select-option {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.select-option:hover {
+    background-color: #ddd;
+}
+
+.timer{
+    height: 100%;
+    width: 80px;
+    display: flex;
+    align-items: center;
+    font-size: 2em;
+    color: white;
+}
+
+.timer img{
+    mix-blend-mode: multiply;
+    max-width: 80%;
+}
+
+.wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,28 +80,29 @@ nav{
     margin-top: 30px;
 }
 
-.flag{
+.flag {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 50px;
     margin-bottom: 5px;
 }
-#flagleft{
+
+#flagleft {
     font-size: 1.6em;
+    color: white;
 }
 
-.board{
+.board {
     display: grid;
-    grid-template-columns: repeat(var(--size),50px) ;
-    grid-template-rows: repeat(var(--size),50px) ;
-    background-color: aliceblue;
-    gap: 3px;
+    grid-template-columns: repeat(var(--length), 50px);
+    grid-template-rows: repeat(var(--breadth), 50px);
+    gap: 5px;
     padding: 5px;
     margin-bottom: 5px;
 }
 
-.board > *{
+.board>* {
     width: 100%;
     height: 100%;
     color: grey;
@@ -73,57 +115,71 @@ nav{
     border-radius: 6px;
 }
 
-.hidden{
-    background-color: aqua;
+.hidden {
+    background-color: #88a2ba;
 }
 
-.marked{
-    background-image:url(Flag.webp);
+.marked {
+    background-image: url(Flag.webp);
+    background-color: white;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: var(--backcolor);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 4px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 
-.revealed{
-    background-color: var(--backcolor);
+.revealed {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 4px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    color: rgba(255, 255, 255, 0.716);
+    background-color: white;
 }
 
-.gameover{
+.blue {
+    background-color: #1ECBEB;
+}
+
+.red {
+    background-color: red;
+}
+
+.yellow {
+    background-color: rgba(255, 255, 0, 0.814);
+}
+
+.pink {
+    background-color: #f52486c9;
+}
+
+.green {
+    background-color: #92D787;
+}
+
+.violet {
+    background-color: #7C90DB;
+}
+
+.gameover {
     display: none;
     font-family: "Poppins";
     margin-bottom: 5px;
     font-size: 2em;
 }
-.gamewin{
-   display: none;
-   margin-bottom: 5px;
-   font-size: 2em;
+
+.gamewin {
+    display: none;
+    margin-bottom: 5px;
+    font-size: 2em;
 }
 
-.mine{
+.mine {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    animation: reveal 0.8s linear infinite alternate;
+    background-image: url(mine.gif);
 }
 
-@keyframes reveal {
-    0%{
-        background-image:none;
-        scale: 0.1;
-    }
-    50%{
-        scale:0.5
-    }
-    100%{
-        sccale: 1;
-        background-image:url(mine.png);
-    }
-    
-}
-.playagain{
+.playagain {
     opacity: 0;
     transition: opacity 2s ease-in-out;
     background-color: green;
@@ -135,4 +191,11 @@ nav{
     cursor: pointer;
     border: none;
     border-radius: 5px;
+}
+
+@media (width<=780px) {
+    .board {
+        grid-template-columns: repeat(var(--size), 30px);
+        grid-template-rows: repeat(var(--size), 30px);
+    }
 }
