@@ -117,6 +117,7 @@ body {
 
 .hidden {
     background-color: #88a2ba;
+    cursor: pointer;
 }
 
 .marked {
