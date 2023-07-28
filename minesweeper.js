@@ -1,4 +1,5 @@
 let timeOut;
+let isBlastsound = false;
 
 function getMinePositions(length, breadth, numberofmines) {
     const positions = [];
@@ -17,14 +18,19 @@ function getMinePositions(length, breadth, numberofmines) {
 
 function debounce(callback, delay) {
     return function (...args) {
+        if (args[0] == "blast.mp3") isBlastsound = true;
         if (timeOut) clearTimeout(timeOut)
         timeOut = setTimeout(() => {
+            if (isBlastsound) {
+                callback("blast.mp3")
+                return
+            }
             callback(...args)
         }, delay)
     }
 }
 
-const debounceFunction = debounce(playSound,0)
+const debounceFunction = debounce(playSound, 0)
 
 export function createBoard(length, breadth, numberofmines) {
     const board = [];
@@ -51,7 +57,6 @@ export function createBoard(length, breadth, numberofmines) {
         board.push(Row);
     }
 
-
     return board;
 }
 
@@ -68,11 +73,8 @@ function adjacentTiles(board, tile) {
 }
 
 export function markTile(tile) {
-    if (tile.status != 'hidden' && tile.status != 'marked')
-        return;
-    if (tile.status == "marked") {
-        tile.status = "hidden";
-    }
+    if (tile.status != 'hidden' && tile.status != 'marked') return;
+    if (tile.status == "marked") tile.status = "hidden";
     else
         tile.status = "marked";
     playSound("marked.wav")
@@ -92,7 +94,6 @@ export function revealTile(board, tile) {
         debounceFunction("blast.mp3")
         return;
     }
-
 
     tile.status = "revealed";
     const nearByTiles = adjacentTiles(board, tile);
@@ -117,7 +118,7 @@ export function revealTile(board, tile) {
         }
         tile.element.append(number);
     }
-    playSound('reveal.wav')
+    debounceFunction('reveal.wav')
 }
 
 export function checkLose(tile) {
