@@ -13,7 +13,7 @@
 
 body {
     background-color: #5e60dc;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -195,8 +195,21 @@ body {
 }
 
 @media (width<=780px) {
+    .upper_box{
+        width: 100%;
+        margin: auto;
+    }
+    .timer{
+        font-size: 1.4em;
+    }
+
+    .timer img{
+        max-width: 60%;
+    }
+
     .board {
-        grid-template-columns: repeat(var(--size), 30px);
-        grid-template-rows: repeat(var(--size), 30px);
+        width: 100%;
+        grid-template-columns: repeat(var(--breadth), 30px);
+        grid-template-rows: repeat(var(--length), 30px);
     }
 }
