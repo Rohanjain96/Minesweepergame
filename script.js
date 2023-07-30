@@ -11,6 +11,7 @@ const boardElement = document.querySelector(".board");
 const flagleftTitle = document.querySelector("#flagleft");
 const playagainbutton = document.querySelector(".playagain");
 const timer = document.querySelector(".timer span");
+const width = window.innerWidth;
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -49,7 +50,7 @@ function startTimer() {
     }, 1000)
 }
 
-function pauseTimer(){
+function pauseTimer() {
     clearInterval(interval)
 }
 
@@ -66,6 +67,14 @@ function showBoard() {
         case "hard": length = 20;
             breadth = 9;
             mines = 35;
+    }
+
+    let temp
+
+    if (width <= "768") {
+        temp = length;
+        length = breadth;
+        breadth = temp
     }
 
     board = createBoard(length, breadth, mines);
