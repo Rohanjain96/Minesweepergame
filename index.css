@@ -209,7 +209,7 @@ body {
 
     .board {
         width: 100%;
-        grid-template-columns: repeat(var(--breadth), 30px);
-        grid-template-rows: repeat(var(--length), 30px);
+        grid-template-columns: repeat(var(--length), 30px);
+        grid-template-rows: repeat(var(--breadth), 30px);
     }
 }
