@@ -4,7 +4,7 @@ let length;
 let breadth;
 let numerOfFlags;
 let board;
-let level = "medium"
+let level = localStorage.getItem("level") || "medium"
 let second = 0;
 let interval;
 const boardElement = document.querySelector(".board");
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const selectSelected = customSelect.querySelector('.select-selected');
     const selectOptions = customSelect.querySelector('.select-options');
     selectOptions.style.display = 'none'
-    selectSelected.textContent = "Medium";
+    selectSelected.textContent = level.charAt(0).toUpperCase() + level.substring(1)||"Medium";
     startTimer()
     showBoard()
 
@@ -33,12 +33,14 @@ document.addEventListener('DOMContentLoaded', function () {
     for (const optionElement of selectOptionElements) {
         optionElement.addEventListener('click', function () {
             level = optionElement.getAttribute("data-value");
+            localStorage.setItem('level',level)
             selectSelected.textContent = optionElement.textContent;
             selectOptions.style.display = 'none';
             second = 0;
             clearInterval(interval)
             startTimer()
             showBoard()
+            window.location.reload("true")
         });
     }
 });
@@ -105,7 +107,7 @@ function howMuchFlagLeft() {
     const flagLeft = board.reduce((count, row) => {
         return count + row.filter((tile) => tile.status == "marked").length;
     }, 0);
-    flagleftTitle.innerText = numerOfFlags - flagLeft;
+    flagleftTitle.innerText = String(numerOfFlags - flagLeft);
 }
 
 function checkGameEnd(board, tile) {
